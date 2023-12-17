@@ -23,10 +23,9 @@ public class UserAccount {
     @Autowired
     private administratorRepository administratorRepository;
     @GetMapping("/login")
-    public ResponseEntity<?> checkUser(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
         int type = -1;
         int code = 404;
-
         String msg = "success";
 
         List<User> userData = userRepository.findAll();
@@ -66,6 +65,47 @@ public class UserAccount {
         }
 
         return ResponseEntity.ok(ret);
+    }
+
+    @GetMapping("/getInfoByEmail")
+    public ResponseEntity<?> getInfoByEmail(@RequestParam String email, @RequestParam String password) {
+        Map<String, Object> ret = new HashMap<>();
+        List<User> userData = userRepository.findAll();
+        List<Administrator> adminData = administratorRepository.findAll();
+
+        if (userData.isEmpty() && adminData.isEmpty()) {
+            ret.put("code", 400);
+            ret.put("msg", "数据库中没有数据");
+            return ResponseEntity.ok(ret);
+        }
+
+        boolean userFound = false;
+        for (User user : userData) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                ret.put("code", 200);
+                ret.put("msg", "普通用户登录成功");
+                ret.put("type", 1);
+                userFound = true;
+                break;
+            }
+        }
+
+        if (!userFound) {
+            for (Administrator admin : adminData) {
+                if (admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
+                    ret.put("code", 200);
+                    ret.put("msg", "管理员登录成功");
+                    ret.put("type", 0);
+                    break;
+                } else {
+                    ret.put("code", 404);
+                    ret.put("msg", "用户名或密码错误");
+                }
+            }
+        }
+
+        return ResponseEntity.ok(ret);
+
     }
 
 //    // 类似的方式实现其他接口...

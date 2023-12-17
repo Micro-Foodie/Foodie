@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 public interface AdministratorDataMapper {
-    @Select("select * from ${table}")
+    @Select("select * from ${taxble}")
     List<Administrator> findAll(@Param("table") String table);
 
 }
