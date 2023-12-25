@@ -11,7 +11,7 @@ public class administratorRepository {
     private AdministratorDataMapper AdministratorDataMapper;
 
     public List<Administrator> findAll(){
-        return AdministratorDataMapper.findAll("User");
+        return AdministratorDataMapper.findAll("ADMINISTRATOR");
     }
 
 }

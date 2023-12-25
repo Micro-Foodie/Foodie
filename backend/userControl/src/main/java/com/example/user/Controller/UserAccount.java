@@ -1,7 +1,7 @@
 package com.example.user.Controller;
 
 import com.example.user.DTO.Administrator;
-import com.example.user.DTO.User;
+import com.example.user.DTO.T_USER;
 import com.example.user.Service.administratorRepository;
 import com.example.user.Service.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +28,10 @@ public class UserAccount {
         int code = 404;
         String msg = "success";
 
-        List<User> userData = userRepository.findAll();
+        List<T_USER> TUSERData = userRepository.findAll();
         List<Administrator> adminData = administratorRepository.findAll();
 
-        if (userData.isEmpty() && adminData.isEmpty()) {
+        if (TUSERData.isEmpty() && adminData.isEmpty()) {
             Map<String, Object> ret = new HashMap<>();
             ret.put("code",400);
             ret.put("msg","数据库中没有数据");
@@ -40,8 +40,8 @@ public class UserAccount {
         Map<String, Object> ret = new HashMap<>();
 
         boolean userFound = false;
-        for (User user : userData) {
-            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+        for (T_USER TUSER : TUSERData) {
+            if (TUSER.getEmail().equals(email) && TUSER.getPassword().equals(password)) {
                 ret.put("code",200);
                 ret.put("msg","普通用户登录成功");
                 ret.put("type",1);
@@ -70,18 +70,18 @@ public class UserAccount {
     @GetMapping("/getInfoByEmail")
     public ResponseEntity<?> getInfoByEmail(@RequestParam String email, @RequestParam String password) {
         Map<String, Object> ret = new HashMap<>();
-        List<User> userData = userRepository.findAll();
+        List<T_USER> TUSERData = userRepository.findAll();
         List<Administrator> adminData = administratorRepository.findAll();
 
-        if (userData.isEmpty() && adminData.isEmpty()) {
+        if (TUSERData.isEmpty() && adminData.isEmpty()) {
             ret.put("code", 400);
             ret.put("msg", "数据库中没有数据");
             return ResponseEntity.ok(ret);
         }
 
         boolean userFound = false;
-        for (User user : userData) {
-            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+        for (T_USER TUSER : TUSERData) {
+            if (TUSER.getEmail().equals(email) && TUSER.getPassword().equals(password)) {
                 ret.put("code", 200);
                 ret.put("msg", "普通用户登录成功");
                 ret.put("type", 1);
