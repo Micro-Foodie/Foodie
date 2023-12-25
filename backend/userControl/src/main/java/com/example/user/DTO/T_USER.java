@@ -3,7 +3,7 @@ package com.example.user.DTO;
 import lombok.Data;
 
 @Data
-public class User {
+public class T_USER {
     public Integer USERID; 
     public String USERNAME;
     public String PASSWORD;
@@ -58,7 +58,7 @@ public class User {
         return TEL;
     }
 
-    public User() {
+    public T_USER() {
         PROFESSIONAL = "NONE";
         AVATAR = "images/avatars/default.jpg";
         FOLLOWNUM = 0;
