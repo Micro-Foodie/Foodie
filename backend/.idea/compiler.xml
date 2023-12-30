@@ -7,19 +7,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="InformationQuery" />
+        <module name="InformationQuery (2)" />
         <module name="GateWay" />
         <module name="feign-api" />
+        <module name="CommentManage" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CommentManagement" target="1.8" />
+      <module name="InformationQuery" target="1.8" />
+      <module name="untitled" target="11" />
       <module name="UserCenter" target="1.8" />
       <module name="userControl" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CommentManage" options="-parameters" />
+      <module name="CommentManagement" options="-parameters" />
       <module name="InformationQuery" options="-parameters" />
+      <module name="InformationQuery (2)" options="-parameters" />
+      <module name="untitled" options="-parameters" />
     </option>
   </component>
 </project>

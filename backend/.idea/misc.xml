@@ -8,7 +8,14 @@
         <option value="$PROJECT_DIR$/feign-api/pom.xml" />
         <option value="$PROJECT_DIR$/userControl/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/CommentManage/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/CommentManage/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/CommentManagement/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="corretto-11" project-jdk-type="JavaSDK">
