@@ -36,6 +36,7 @@ public class User
     [Column("FOLLOWNUM")]
     public int? FollowNum { get; set; }
 
+
     public User()
     {
         Professional = "NONE";
