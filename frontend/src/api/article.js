@@ -113,26 +113,6 @@ export function GetArticleDetailsAsync(params) {
     });
 }
 
-
-// 获取文章列表
-export function getArticle(params) {
-    // return Request({
-    //     method: 'GET',
-    //     url: 'forum/loadArticle',
-    //     params: params
-    // }).then(function (response) {
-    //     if (response.data.code === 200) {
-    //         return response.data.data;
-    //     } else {
-    //         Message.error("获取文章列表失败");
-    //         return null;
-    //     }
-    // }).catch(function (error) {
-    //     console.log(error);
-    //     return null;
-    // });
-}
-
 // 获取用户的文章数量
 export function getArticleNumber(params) {
     return Request({
@@ -229,4 +209,21 @@ export function topArticle(params) {
     }).catch(function (error) {
         console.log(error);
     })
+}
+
+// 给文章点赞/取消点赞
+export function like(params) {
+    return Request({
+        method: 'POST',
+        url: 'Like/Like',
+        params: params
+    }).then(function (response) {
+        if (response.data.code === 200) {
+            Message.success(response.data.msg);  // 点赞/取消点赞成功
+        } else if (response.data.code === 400) {
+            Message.error("点赞失败");
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }
