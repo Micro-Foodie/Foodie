@@ -110,7 +110,7 @@ const afterLogin = (person_info) => {
             result = result.data;
             let person_info = {
                 avatar: result.avatar,
-                id: result.id,
+                id: result.userId,
                 name: result.name,
                 tel: result.tel,
                 password: formData.password,

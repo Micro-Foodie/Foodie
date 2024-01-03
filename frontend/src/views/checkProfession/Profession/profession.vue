@@ -71,7 +71,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { ProfessionToDeal, DealProfession } from '@/api/profession';  // 引入 api 请求函数
+import { ProfessionToDeal, DealProfession } from '@/api/ProfessionManage';  // 引入 api 请求函数
 import { GetInfoByID } from '@/api/user';  // 引入 api 请求函数
 
 const card_show = ref(false);//用以点击进入申请信息的详情界面

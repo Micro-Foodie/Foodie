@@ -153,7 +153,7 @@
 <script setup="props">
 import { getCurrentInstance, ref, reactive, toRefs, onMounted, nextTick, watch } from 'vue';
 import component1 from '../component1/component1.vue';
-import { GetInfoByID, editInfo } from "@/api/user.js"
+import { GetInfoByID, editInfo } from "@/api/info.js"
 import router from "@/router/index.js"
 import { useRoute, useRouter } from "vue-router"
 import { ApplyProfession } from "@/api/profession.js"

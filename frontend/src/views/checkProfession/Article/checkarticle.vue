@@ -60,7 +60,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import router from "@/router/index.js"
-import { ReportPostToDeal, DealReportAync } from '@/api/report';  // 引入 api 请求函数
+import { ReportPostToDeal, DealReportAync } from '@/api/ReportPostManage';  // 引入 api 请求函数
 import { GetArticleDetailsAsync } from '@/api/article';
 import { useStore } from 'vuex'//引入store
 const store = useStore();//使用store必须加上

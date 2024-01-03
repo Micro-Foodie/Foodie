@@ -20,10 +20,10 @@
                 </div>
                 <div class="information">
                     <div class="fans">
-                        粉丝：{{ fansNumber }}
+                        粉丝：{{ 20 }}
                     </div>
                     <div class="following">
-                        关注：{{ followerNumber }}
+                        关注：{{ 3 }}
                     </div>
                     <div class="content">
                         内容：{{ articleNumber }}
@@ -65,8 +65,7 @@
 <script setup="props">
 import { ref, reactive, onMounted, computed, nextTick, defineEmits } from 'vue';
 import { searchArticle, getArticleNumber } from "@/api/article.js"
-import { GetInfoByID, changePoint } from "@/api/user.js"
-import { getFansNumber, getFollowNumber } from "@/api/follow.js"
+import { GetInfoByID, changePoint } from "@/api/info.js"
 import { House, Star, User } from '@element-plus/icons-vue'
 import { ElPagination } from 'element-plus'
 import { useRouter } from 'vue-router'
@@ -116,15 +115,12 @@ onMounted(() => {
     
     fetchnum();
     fetchuser();
-    fetchfollownum();
-    fetchfansnum();
     performFunction();
 
 
 })
 const UserInfo = ref([]);
 const articleNumber = ref(0);
-const fansNumber = ref(0);
 const followerNumber = ref(0);
 //————————————————————————————————函数————————————————————————
 const flash = () => {
@@ -216,52 +212,7 @@ const fetchnum = async (stringValue = '') => {
     articleNumber.value = result;
 
 };
-//关注数目
-const fetchfollownum = async (stringValue = '') => {
-    let result;
-    if (!stringValue) {
-        stringValue = "0"
-        const params = {
-            user_id: store.state.Info.id,
-        };
-        result = await getFansNumber(params);
-    }
-    else {
-        const params = {
-            keyword: stringValue
-        };
-        // 这里并没有写好还得改
-        result = await getFansNumber(params);
-    }
 
-    if (!result)
-        return;
-    fansNumber.value = result;
-
-};
-//粉丝数目
-const fetchfansnum = async (stringValue = '') => {
-    let result;
-    if (!stringValue) {
-        stringValue = "0"
-        const params = {
-            user_id: store.state.Info.id,
-        };
-        result = await getFollowNumber(params);
-    }
-    else {
-        const params = {
-            keyword: stringValue
-        };
-        // 这里并没有写好还得改
-        result = await getFollowNumber(params);
-    }
-
-    if (!result)
-        return;
-    followerNumber.value = result;
-
-};
 //获取当前用户信息
 const fetchuser = async () => {
     const params = {
