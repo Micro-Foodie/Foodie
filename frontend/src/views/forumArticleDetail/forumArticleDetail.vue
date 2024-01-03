@@ -41,9 +41,9 @@
                         <!-- 需增加路径到作者个人主页 -->
                         <!-- <router-link :to="`/layout`"> -->
                         <!-- isFollowing ? '已关注' : '关注' -->
-                        <b class="author">{{ articleInfo[0].authorName }}
+                        <!-- <b class="author">{{ articleInfo[0].authorName }}
                             <el-button class="button" @click="Follow(articleInfo[0].authorId)">{{ isFollowing ? '已关注' : '关注' }}</el-button>
-                        </b>
+                        </b> -->
                         <!-- </router-link> -->
                         <div class="publish_time" v-if="articleInfo[0].releaseTime">
                             发布于 {{ articleInfo[0].releaseTime.split('T')[0] }} {{ articleInfo[0].releaseTime.split('T')[1]
@@ -110,12 +110,12 @@ import navTop from "@/components/navTop.vue"
 import commentList from "./commentList.vue"
 
 import { like } from '@/api/like';
-import { GetInfoByID } from '@/api/user';
+import { GetInfoByID } from '@/api/info';
 import { favourite } from '@/api/favourite';
 import { ReportArticle } from '@/api/report'; // 引入举报api
 
 import { GetArticleDetailsAsync } from '@/api/article';
-import { followAuthor, isfollowAuthor } from '@/api/follow';
+// import { followAuthor, isfollowAuthor } from '@/api/follow';
 import Message from "@/utils/Message.js"
 
 import { useStore } from 'vuex' // 引入store
@@ -147,7 +147,7 @@ const getArticleDetail = async (articleId) => {
     }
     articleInfo.value = result.data;
     getAuthor(articleInfo.value[0].authorId);
-    isFollow(articleInfo.value[0].authorId);
+    // isFollow(articleInfo.value[0].authorId);
 }
 
 const getAuthor = async (userId) => {
@@ -220,35 +220,35 @@ watch(() => router.currentRoute.value.params.pBoardId, (newValue) => {
     getArticleDetail(router.currentRoute.value.params.articleId);
 });
 
-const isFollowing = ref()
+// const isFollowing = ref()
 
-// 页面加载时判断是否关注
-const isFollow = async (userId) => {
-    const params = {
-        user_id: store.state.Info.id,
-        author_id: userId,
-    }
-    let result = await isfollowAuthor(params);
-    if (result.data == true) {
-        isFollowing.value = 1;
-    }
-    else {
-        isFollowing.value = 0;
-    }
-}
+// // 页面加载时判断是否关注
+// const isFollow = async (userId) => {
+//     const params = {
+//         user_id: store.state.Info.id,
+//         author_id: userId,
+//     }
+//     let result = await isfollowAuthor(params);
+//     if (result.data == true) {
+//         isFollowing.value = 1;
+//     }
+//     else {
+//         isFollowing.value = 0;
+//     }
+// }
 
-// 处理关注逻辑
-const Follow = async (userId = '') => {
-    const params = {
-        user_id: store.state.Info.id,
-        author_id: userId,
-    }
-    let result = await followAuthor(params);
-    if (!result) {
-        return;
-    }
-    isFollowing.value = !isFollowing.value;
-}
+// // 处理关注逻辑
+// const Follow = async (userId = '') => {
+//     const params = {
+//         user_id: store.state.Info.id,
+//         author_id: userId,
+//     }
+//     let result = await followAuthor(params);
+//     if (!result) {
+//         return;
+//     }
+//     isFollowing.value = !isFollowing.value;
+// }
 
 const formData = reactive({
 

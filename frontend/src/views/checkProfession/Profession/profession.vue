@@ -97,7 +97,7 @@ const afterGet = (request) => {
             console.log(list.value[index])
             let params = {
                 
-                UserId: list.value[index].userId,
+                ID: list.value[index].userId,
                 type: 1
             }
             GetInfoByID(params)//获取对应申请的用户信息

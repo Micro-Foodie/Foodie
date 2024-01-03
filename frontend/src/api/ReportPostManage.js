@@ -10,7 +10,7 @@ import router from "@/router/index.js"
 export function ReportPostToDeal() {
     return Request({
         method: 'GET',
-        url: 'reportCommentManage/ReportPostToDeal',
+        url: 'reportPostManage/ReportPostToDeal',
     }).then(function (response) {
         if (response.data.code === 200) {
             return response.data;  // 正确响应，返回数据
@@ -26,7 +26,7 @@ export function ReportPostToDeal() {
 export function DealReportAync(params){
     return Request({
         method: 'PUT',
-        url: 'reportCommentManage/DealReport',
+        url: 'reportPostManage/DealReport',
         params: params,
     }).then(function (response) {
         if (response.data.code === 200) {
