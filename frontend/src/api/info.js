@@ -1,53 +1,14 @@
 // 本文件存放与用户/管理员相关的接口请求函数
 
-import Request from "@/utils/Request.js";  // 在每个 api 文件里都要引入这两个文件
+import Request from "@/utils/Request/info.js";  // 在每个 api 文件里都要引入这两个文件
 import Message from "@/utils/Message.js"  // 在每个 api 文件里都要引入这两个文件
 import router from "@/router/index.js"
-
-// 用户/管理员登录
-export function userLogin(params) {  // 在 src/views/login/index.vue 里调用，可以去看看是如何调用的
-    return Request({  // 发送请求
-        method: 'GET',
-        url: 'user/login',  // 与后端接口对应！！！
-        params: params
-    }).then(function (response) {  // then 表示成功接收到响应后的操作
-        if (response.data.code === 200) {
-            Message.success("登录成功");
-            
-            // console.log(response.data); // 检查返回的数据
-            return response.data;  //  // 正确响应，返回数据
-        } else {
-            Message.error("登录失败");
-        }
-    }).catch(function (error) {  // catch 表示接收到错误响应后的操作
-        console.log(error);
-    });
-}
-
-// 用户/管理员注册
-export function userRegister(params) {
-    return Request({
-        method: 'POST',
-        url: 'user/register',
-        params: params
-    }).then(function (response) {
-        if (response.data.code === 200) {
-            Message.success("注册成功");
-            router.push({ path: '/login' });
-            return response.data;  // 正确响应，返回数据
-        } else {
-            Message.error("注册失败");
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
-}
 
 //通过Email获取用户/管理员信息
 export function GetInfoByEmail(params) {
     return Request({
         method: 'GET',
-        url: 'user/getInfoByEmail',
+        url: 'info/getInfoByEmail',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -64,7 +25,7 @@ export function GetInfoByEmail(params) {
 export function GetInfoByID(params) {
     return Request({
         method: 'GET',
-        url: 'user/InfoByID',
+        url: 'info/InfoByID',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -81,7 +42,7 @@ export function GetInfoByID(params) {
 export function changePoint(params) {
     return Request({
         method: 'POST',
-        url: 'user/changePoint',
+        url: 'info/changePoint',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -101,7 +62,7 @@ export function changePoint(params) {
 export function editInfo(params) {
     return Request({
         method: 'POST',
-        url: 'user/edit',
+        url: 'info/edit',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -113,6 +74,31 @@ export function editInfo(params) {
     }).catch(function (error) {
         console.log(error);
     });
+}
 
-    
+// 显示图片/用户头像不需要api，直接通过url就行
+const config = {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+};
+
+// 上传用户头像
+// 将参数放到 formData 表单里面
+// database-front-web/src/components/avatarUploader.vue
+export function uploadAvatar(formData) {
+    return Request({
+        method: "POST",
+        url: 'info/uploadAvatar',
+        data: formData,
+        headers: config.headers
+    }).then(function (response) {
+        if (response.data.code === 200) {
+            Message.success("上传成功");
+        } else {
+            Message.error("请求成功，但上传失败");
+        }
+    }).catch(function (error) {  // catch 表示接收到错误响应后的操作        
+        Message.error("请求失败，且上传失败");
+    });
 }

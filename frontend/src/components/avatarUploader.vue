@@ -18,7 +18,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { uploadAvatar } from '@/api/files.js';
+import { uploadAvatar } from '@/api/info.js';
 
 const store = useStore();
 const formData = new FormData();

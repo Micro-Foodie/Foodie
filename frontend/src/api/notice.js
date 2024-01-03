@@ -1,8 +1,6 @@
-import Request from "@/utils/Request.js";  // 在每个 api 文件里都要引入这两个文件
+import Request from "@/utils/Request/notice.js";  // 在每个 api 文件里都要引入这两个文件
 import Message from "@/utils/Message.js"  // 在每个 api 文件里都要引入这两个文件
 import router from "@/router/index.js"
-
-
 
 // 加载信息
 export function loadNotice(params) {
