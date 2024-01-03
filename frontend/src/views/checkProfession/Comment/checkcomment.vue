@@ -8,7 +8,7 @@
                     留言者：{{ Info[index].authorName }}
                 </b>
                 <b style="position: absolute;top:50%;left:5%;font-size: 14px;color:rgb(120, 120, 120)">
-                    留言ID：{{ item.msgId }}
+                    留言ID：{{ item.msgid }}
                 </b>
                 <el-button class="pass_btn" style="position:absolute;top:25%;left:78%;"
                     @click="pass(item.reportId)">
@@ -39,7 +39,7 @@
             举报原因：{{ list[currentCard].reason }}
         </b>
                 <b style="position: absolute;top:40%;left:9%;font-size: 20px;color:rgb(61, 61, 61)">
-                    留言ID：{{ list[currentCard].msgId }}
+                    留言ID：{{ list[currentCard].msgid }}
                 </b>
                 <b style="position: absolute;top:52%;left:9%;font-size: 20px;color:rgb(61, 61, 61)">
                     留言内容：{{ Info[currentCard].content }}
@@ -62,9 +62,11 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import router from "@/router/index.js"
-import { ReportCommentToDeal, DealMsgReportAync } from '@/api/ReportComment';  // 引入 api 请求函数
+import { ReportCommentToDeal, DealMsgReportAync } from '@/api/ReportCommentManage';  // 引入 api 请求函数
 import { GetCommentDetailsAsync } from '@/api/comment';
 import { useStore } from 'vuex'//引入store
+import axios from 'axios'
+
 const store = useStore();//使用store必须加上
 
 const card_show = ref(false);//用以点击进入申请信息的详情界面
@@ -74,13 +76,15 @@ const Info = reactive([]); // 定义并初始化 Info 变量
 
 const GetList = () => {
     //将获取列表信息的接口封装在函数中
-    ReportCommentToDeal()
-        .then(function (result) {
-            afterGet(result);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    const ret = axios('http://localhost:8007/api/reportCommentManage/ReportCommentToDeal')
+    afterGet(ret);
+    // ReportCommentToDeal()
+    //     .then(function (result) {
+    //         afterGet(result);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
 }
 
 const afterGet = async (request) => {
@@ -88,7 +92,7 @@ const afterGet = async (request) => {
     for (let i = 0; i < list.value.length; i++) {
         (function (index) {
             let params = {
-                msg_id: list.value[index].msgId,
+                msg_id: list.value[index].msgid,
             }
             GetCommentDetailsAsync(params)//获取对应举报的留言信息
                 .then(function (result) {

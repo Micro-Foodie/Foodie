@@ -4,14 +4,14 @@
         <!-- 每条申请对应一条卡片 -->
         <el-card :class='index==currentCard?"profession-list-active":"profession-list-inactive"' @click.native="intoCard(index)">
             <!-- 下面组件的v-if都不能省略，否则刷新页面会出错 -->
-            <userAvatar v-if="Info[index]" :userId=item.id :width=50 :addLink="0"
+            <userAvatar v-if="Info[index]" :userId=item.userId :width=50 :addLink="0"
                 style="position: absolute;top:15%;left:5%;"></userAvatar>
             <b v-if="Info[index]"
                 style="position: absolute;top:15%;left:20%;font-size: 18px;color:rgb(61, 61, 61)">
-                用户名：{{ Info[index].data.name }}
+                用户名：{{ Info[index].data.USERNAME }}
             </b>
             <b style="position: absolute;top:55%;left:20%;font-size: 14px;color:rgb(120, 120, 120)">
-                ID：{{ item.id }}
+                ID：{{ item.userId }}
             </b>
             <el-button class="pass_btn" style="position:absolute;top:25%;left:78%;"
                 @click.stop="pass(item.requestId)">
@@ -32,7 +32,7 @@
     <!-- 资料信息的详细显示 -->
     <b style="position:absolute;top:8%;left:5%;">ID</b>
     <div class="blank" style="top:6%;left:20%;">
-        <div style="position:absolute;top:28%;left:5%">{{ list[currentCard].id }} </div>
+        <div style="position:absolute;top:28%;left:5%">{{ list[currentCard].userId }} </div>
     </div>
     <b style="position:absolute;top:20%;left:5%;">用户名</b>
     <div class="blank" style="top:18%;left:20%;">
@@ -71,7 +71,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { ProfessionToDeal, DealProfession } from '@/api/profession';  // 引入 api 请求函数
+import { ProfessionToDeal, DealProfession } from '@/api/ProfessionManage';  // 引入 api 请求函数
 import { GetInfoByID } from '@/api/user';  // 引入 api 请求函数
 
 const card_show = ref(false);//用以点击进入申请信息的详情界面
@@ -94,8 +94,10 @@ const afterGet = (request) => {
     list.value = request.data;//申请信息放入list中
     for (let i = 0; i < list.value.length; i++) {
         (function (index) {
+            console.log(list.value[index])
             let params = {
-                ID: list.value[index].id,
+                
+                ID: list.value[index].userId,
                 type: 1
             }
             GetInfoByID(params)//获取对应申请的用户信息
