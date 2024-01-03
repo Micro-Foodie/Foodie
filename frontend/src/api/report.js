@@ -1,6 +1,6 @@
 // 本文件存放与举报信息相关的接口请求函数
 
-import Request from "@/utils/Request.js";  // 在每个 api 文件里都要引入这两个文件
+import Request from "@/utils/ReportManageRequest.js";  // 在每个 api 文件里都要引入这两个文件
 import Message from "@/utils/Message.js"  // 在每个 api 文件里都要引入这两个文件
 import router from "@/router/index.js"
 
@@ -28,7 +28,7 @@ export function ReportArticle(params){
 export function ReportPostToDeal() {
     return Request({
         method: 'GET',
-        url: 'Report/ReportPostToDeal',
+        url: 'reportPostManage/ReportPostToDeal',
     }).then(function (response) {
         if (response.data.code === 200) {
             return response.data;  // 正确响应，返回数据
@@ -44,7 +44,7 @@ export function ReportPostToDeal() {
 export function DealReportAync(params){
     return Request({
         method: 'PUT',
-        url: 'Report/DealReport',
+        url: 'reportPostManage/DealReport',
         params: params,
     }).then(function (response) {
         if (response.data.code === 200) {
