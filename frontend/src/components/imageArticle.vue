@@ -8,7 +8,7 @@
                 <div style="padding: 14px">
                     <span>Yummy hamburger</span>
                     <div class="bottom">
-                        <time class="time">{{ currentDate }}</time>
+                        <time class="time">{{ this.currentDate }}</time>
                         <el-button text class="button">Operating</el-button>
                     </div>
                 </div>
