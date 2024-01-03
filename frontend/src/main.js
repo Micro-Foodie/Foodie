@@ -51,7 +51,7 @@ if (savedState) {
 // import { getCurrentInstance } from "vue";  // 需要引入
 // const { proxy } = getCurrentInstance();
 app.config.globalProperties.globalInfo = {
-  avatarUrl: "http://localhost:5045/api/files/getAvatar/",
+  avatarUrl: "http://localhost:8001/api/info/getAvatar/",
   // avatarUrl: "http://124.220.110.93:5045/api/files/getAvatar/",
   search_keyword: "Search Key Words",
 }
