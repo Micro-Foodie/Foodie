@@ -17,7 +17,6 @@ public class CommentController : ControllerBase
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
 
-    // 上传一条评论 modify by Xiang Lei 2023.8.13
     [HttpPost("postComment")]
     public async Task<IActionResult> PostComment(int user_id, int article_id, string content)
     {
@@ -49,7 +48,6 @@ public class CommentController : ControllerBase
         });
     }
 
-    // 删除指定评论 modify by Xiang Lei 2023.8.13
     [HttpPost("deleteComment")]
     public async Task<IActionResult> DeleteComment(int msg_id)
     {
@@ -74,7 +72,6 @@ public class CommentController : ControllerBase
         });
     }
 
-    // 加载指定文章的评论 modify by Xiang Lei 2023.8.13
     [HttpGet("loadComment")]
     public async Task<IActionResult> loadComment(int article_id, int order)
     {
@@ -127,7 +124,6 @@ public class CommentController : ControllerBase
         });
     }
 
-    // modify by Xiang Lei 2023.8.16
     [HttpGet("viewComment")]
     public async Task<IActionResult> GetCommentDetails(int msg_id)
     {
