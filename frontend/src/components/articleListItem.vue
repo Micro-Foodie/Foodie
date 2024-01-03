@@ -10,32 +10,33 @@
 
           <div class="user-info">
             <!-- 是否置顶 -->
-            <div class="istop" v-if="data.isTop == 1 && store.state.type == 0">
+            <!-- <div class="istop" v-if="data.isTop == 1 && store.state.type == 0">
               <el-button class="cancelTopButton" type="primary" round size="small" @click="cancelTop">取消置顶</el-button>
             </div>
             <div v-else-if="store.state.type == 0">
               <el-button class="topButton" type="primary" round size="small" @click="executeTop">置顶</el-button>
-            </div>
+            </div> -->
             <!-- 是否置顶 -->
-            <userAvatar :userId=data.authorId :width=30 :addLink="false"></userAvatar>
-            <div class="user-info">{{ data.authorName }}</div>
+
+            <!-- <userAvatar :userId=data.authorId :width=30 :addLink="false"></userAvatar>
+            <div class="user-info">{{ data.authorName }}</div> -->
 
             <el-divider direction="vertical"></el-divider>
 
-            <div class="post-time">{{ data.releaseTime }}</div>
+            <div class="post-time"> 2023-09-18 </div>
 
             <el-divider direction="vertical"></el-divider>
 
-            <div class="tag">{{ data.tag }}</div>
+            <div class="tag">推荐</div>
           </div>
           <!--显示用户信息-->
 
-          <router-link :to="`/forumArticleDetail/${data.postId}`" class="title" @click="handleView(data.postId)">
-            {{ data.title }}
+          <router-link :to="`/forumArticleDetail/${data.id}`" class="title" @click="handleView(data.id)">
+            {{ data.name }}
           </router-link>
           <!--显示帖子信息
           <router-link :to="`/forumArticleDetail/${data.postId}`" class="title">{{ data.title }}</router-link>-->
-          <div class="summary">{{ data.summary }}</div>
+          <div class="summary">{{ data.desc.slice(0, 48) }}...</div>
           <div class="article-info">
             <span class="iconfont icon-eye">
               {{ data.views == 0 ? "浏览" : data.views }}
