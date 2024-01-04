@@ -322,7 +322,6 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
     }
 
 
-    // modify by Xiang Lei 2023.8.16 （没详细改）
     [HttpGet("viewArticle")]
     public async Task<IActionResult> GetArticleDetails(int article_id)
     {
@@ -498,7 +497,6 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
     [HttpPost("postArticle")]
     public async Task<IActionResult> postArticle([FromBody] ArticleRequestModel model)
     {
-        // !!!!!TODO: 文章ID、分享链接应该怎么赋值？还要避免与表中已有文章数据重复
         // user_id 要满足完整性约束
         var temp = await _database.Users.ToListAsync();
         bool exist = false;
