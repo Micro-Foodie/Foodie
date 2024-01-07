@@ -95,17 +95,17 @@ const getArticleInfo = async () => {
 
     //重要的文章获取！！！
     // 不能使用绝对地址，用相对地址
-    // const ret = await axios.get('https://www.mxnzp.com/api/cookbook/list/category?&app_id=uunkojnlttcj1i2i&app_secret=AqLl9iivtCsXTlbZJIu6P8Kibg1NClBB',
-    //     {
-    //         params: {
-    //             category_id: 7,
-    //             page: 1,
-    //         }
-    //     })
+    const ret = await axios.get('https://www.mxnzp.com/api/cookbook/list/category?&app_id=uunkojnlttcj1i2i&app_secret=AqLl9iivtCsXTlbZJIu6P8Kibg1NClBB',
+        {
+            params: {
+                category_id: 7,
+                page: 1,
+            }
+        })
 
-    // todayRecommendList.value = ret.data.data.list.slice(0, 3);
+    todayRecommendList.value = ret.data.data.list.slice(0, 3);
 
-    // router.push(`forumArticleDetail/${data.id}`);
+    router.push(`forumArticleDetail/${data.id}`);
 };
 
 const handleFoodTypeJump = (index) => {
