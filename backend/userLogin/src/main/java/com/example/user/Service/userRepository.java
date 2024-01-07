@@ -22,9 +22,14 @@ public class userRepository {
     public List<T_USER> findID(int UserId){
         return UserDataMapper.findUserById(UserId);
     }
+    public void registerUser(String UserName, String Email, String Password) {
+        // 调用Mapper中的registerUser方法
+        int rowsAffected = UserDataMapper.registerUser(UserName, Email, Password);
 
-    public List<T_USER> registerUser(int UserId){
-        return UserDataMapper.findUserById(UserId);
+        if (rowsAffected > 0) {
+            System.out.println("User registered successfully!");
+        } else {
+            System.out.println("Failed to register user.");
+        }
     }
-
 }

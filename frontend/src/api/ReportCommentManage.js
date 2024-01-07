@@ -26,7 +26,7 @@ export function ReportCommentToDeal() {
 export function DealMsgReportAync(params){
     return Request({
         method: 'PUT',
-        url: 'reportCommentManage/DealMsgReport',
+        url: 'reportCommentManage/dealMsgReport',
         params: params,
     }).then(function (response) {
         if (response.data.code === 200) {

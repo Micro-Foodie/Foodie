@@ -23,9 +23,9 @@ public class ReportPostController {
     }
 //
     @PutMapping("/DealReport") // 处理举报
-    public ResponseEntity<?> dealMsgReport(@RequestParam int reportId, @RequestParam int adminId, @RequestParam int isTrue, @RequestParam String result) {
+    public ResponseEntity<?> dealMsgReport(@RequestParam int reportId, @RequestParam int adminId, @RequestParam int is_true, @RequestParam String result) {
         Map<String, Object> resulting = new HashMap<>();
-        resulting = ReportPostRepository.DealReportPost(reportId,adminId,isTrue,result);
+        resulting = ReportPostRepository.DealReportPost(reportId,adminId,is_true,result);
         return ResponseEntity.ok(resulting);
     }
 }
