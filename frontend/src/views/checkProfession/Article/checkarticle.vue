@@ -43,13 +43,14 @@
         </div>
 
                 <el-button class="pass_btn" style="position: absolute;bottom:5%;left:42%;"
-                    @click="pass(list[currentCard].reportId)">
+                    @click="pass(list[currentCard].postReportId)">
                     <el-icon>
                         <Check />
                     </el-icon>
+                    
                 </el-button>
                 <el-button class="close_btn" style="position: absolute;bottom:5%;left:52%;"
-                    @click="decline(list[currentCard].reportId)">
+                    @click="decline(list.value[currentCard].postReportId)">
                     <el-icon>
                         <Close />
                     </el-icon>
@@ -114,14 +115,16 @@ const goArticle = (index) => {
 
 const pass = (reportId) => {
     //审核通过
+     console.log(reportId)
     let params = {
-        report_id: reportId,
+        reportId: reportId,
         adminId: store.state.Info.id,
         is_true: 1,
         result: "情况属实，已做处理"
     }
     DealReportAync(params)
         .then(function (result) {
+
             /*通过之后的操作 */
             GetList();
             currentCard.value = -1;
@@ -134,7 +137,7 @@ const pass = (reportId) => {
 const decline = (reportId) => {
     //审核不通过
     let params = {
-        report_id: reportId,
+        reportId: reportId,
         adminId: store.state.Info.id,
         is_true: 2,
         result: "抱歉，原帖没有问题"

@@ -8,16 +8,16 @@
                     留言者：{{ Info[index].authorName }}
                 </b>
                 <b style="position: absolute;top:50%;left:5%;font-size: 14px;color:rgb(120, 120, 120)">
-                    留言ID：{{ item.msgid }}
+                    留言ID：{{ item.msgId }}
                 </b>
                 <el-button class="pass_btn" style="position:absolute;top:25%;left:78%;"
-                    @click="pass(item.reportId)">
+                    @click.stop="pass(item.msgreportid)">
                     <el-icon>
                         <Check />
                     </el-icon>
                 </el-button>
                 <el-button class="close_btn" style="position: absolute;top:25%;left:85%;"
-                    @click="decline(item.reportId)">
+                    @click.stop="decline(item.msgreportid)">
                         <el-icon>
                             <Close />
                         </el-icon>
@@ -39,19 +39,19 @@
             举报原因：{{ list[currentCard].reason }}
         </b>
                 <b style="position: absolute;top:40%;left:9%;font-size: 20px;color:rgb(61, 61, 61)">
-                    留言ID：{{ list[currentCard].msgid }}
+                    留言ID：{{ list[currentCard].msgId }}
                 </b>
                 <b style="position: absolute;top:52%;left:9%;font-size: 20px;color:rgb(61, 61, 61)">
                     留言内容：{{ Info[currentCard].content }}
                 </b>
                 <el-button class="pass_btn" style="position: absolute;bottom:5%;left:42%;"
-                    @click="pass(list[currentCard].reportId)">
+                    @click.stop="pass(list[currentCard].msgreportid)">
                     <el-icon>
                         <Check />
                     </el-icon>
                 </el-button>
                 <el-button class="close_btn" style="position: absolute;bottom:5%;left:52%;"
-                    @click="decline(list[currentCard].reportId)">
+                    @click.stop="decline(list[currentCard].msgreportid)">
                     <el-icon>
                         <Close />
                     </el-icon>
@@ -76,21 +76,23 @@ const Info = reactive([]); // 定义并初始化 Info 变量
 
 const GetList = () => {
     //将获取列表信息的接口封装在函数中
-    const ret = axios('http://localhost:8007/api/reportCommentManage/ReportCommentToDeal')
-    afterGet(ret);
-    // ReportCommentToDeal()
-    //     .then(function (result) {
-    //         afterGet(result);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
+    // const ret = axios('http://localhost:8007/api/reportCommentManage/ReportCommentToDeal')
+    // afterGet(ret);
+    ReportCommentToDeal()
+        .then(function (result) {
+            afterGet(result);
+            console.log(result);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 const afterGet = async (request) => {
     list.value = request.data;//申请信息放入list中
     for (let i = 0; i < list.value.length; i++) {
         (function (index) {
+            
             let params = {
                 msg_id: list.value[index].msgid,
             }
@@ -120,6 +122,7 @@ const goComment = (index) => {
 
 const pass = (reportId) => {
     //审核通过
+    console.log(reportId)
     let params = {
         report_id: reportId,
         adminId: store.state.Info.id,

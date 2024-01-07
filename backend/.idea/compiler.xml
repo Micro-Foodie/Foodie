@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="userLogin" />
         <module name="ProfessionManage" />
-        <module name="GateWay" />
         <module name="ReportManage" />
       </profile>
     </annotationProcessing>
@@ -17,6 +16,7 @@
       <module name="CommentManage" target="1.8" />
       <module name="CommentManagement" target="1.8" />
       <module name="feign-api" target="11" />
+      <module name="GateWay" target="11" />
       <module name="InformationQuery (1)" target="1.8" />
       <module name="InformationQuery (2)" target="1.8" />
       <module name="untitled" target="11" />

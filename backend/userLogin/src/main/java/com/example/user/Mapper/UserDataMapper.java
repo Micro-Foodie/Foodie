@@ -17,8 +17,9 @@ public interface UserDataMapper {
 
     @Select("SELECT * FROM T_USER WHERE UserId = #{UserId}")
     List<T_USER> findUserById(@Param("UserId") int UserId);
-    @Insert("INSERT INTO T_USER (UserName, Email, Professional,Avatar,FollowerNum,ThemeID,Points,Levels, Time, IsTrue) VALUES (#{UserId}, #{MsgId}, #{Reason}, SYSDATE, 0)")
-    int registerUser(@Param("UserName") String UserName, @Param("Email") String Email, @Param("Reason") String Reason);
-    //找到未处理的
+    @Insert("INSERT INTO T_USER (UserName, Email, PassWord, PROFESSIONAL, AVATAR, FOLLOWNUM, THEMEID, POINTS, LEVELS) " +
+            "VALUES (#{UserName}, #{Email}, #{PassWord}, 'NONE', 'images/avatars/default.jpg', 0, 1, 0, 0)")
+    int registerUser(@Param("UserName") String UserName, @Param("Email") String Email, @Param("PassWord") String PassWord);
+
 
 }

@@ -120,60 +120,40 @@ public class UserAccount {
         ret.put("msg", "不存在用户");
         return ResponseEntity.ok(ret);
     }
-//    @PostMapping("/register")
-//    public ResponseEntity<?> registerUser(@RequestParam String username, @RequestParam String email,
-//                                          @RequestParam String password, @RequestParam int type) {
-//        List<T_USER> TUSERData = userRepository.findEmail(email);
-//        List<Administrator> adminData = administratorRepository.findEmail(email);
-//        Map<String, Object> ret = new HashMap<>();
-//        if (TUSERData.isEmpty() && adminData.isEmpty()) {
-//            if(type==1){
-//
-//            }
-//            else{
-//
-//            }
-//
-//            return ResponseEntity.ok(ret);
-//        }
-//        else if(!TUSERData.isEmpty()){
-//            ret.put("code",400);
-//            ret.put("msg","该邮箱已被注册成为用户");
-//        }
-//        else{
-//            ret.put("code",400);
-//            ret.put("msg","该邮箱已被注册成为管理员");
-//        }
-//
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestParam String username, @RequestParam String email,
+                                          @RequestParam String password, @RequestParam int type) {
+        List<T_USER> TUSERData = userRepository.findEmail(email);
+        List<Administrator> adminData = administratorRepository.findEmail(email);
+        Map<String, Object> ret = new HashMap<>();
+        if (TUSERData.isEmpty() && adminData.isEmpty()) {
+            if(type==1){
+                userRepository.registerUser(username,email,password);
+                ret.put("code",200);
+                ret.put("msg","用户成功注册");
+            }
+            else{
+                administratorRepository.registerAdmin(username,email,password);
+                ret.put("code",200);
+                ret.put("msg","管理员成功注册");
+            }
+
+            return ResponseEntity.ok(ret);
+        }
+        else if(!TUSERData.isEmpty()){
+            ret.put("code",400);
+            ret.put("msg","该邮箱已被注册成为用户");
+        }
+        else{
+            ret.put("code",400);
+            ret.put("msg","该邮箱已被注册成为管理员");
+        }
+
+        return ResponseEntity.ok(ret);
+    }
 
 //    // 类似的方式实现其他接口...
 //
-//    @PostMapping("/register")
-//    public ResponseEntity<?> registerUser(@RequestParam String username, @RequestParam String email,
-//                                          @RequestParam String password, @RequestParam int type) {
-//        // 类似的方式实现注册接口...
-//    }
-//
-//    // 类似的方式实现其他接口...
-//
-//    @PostMapping("/edit")
-//    public ResponseEntity<?> editUser(@RequestParam int id, @RequestParam String name, @RequestParam String password) {
-//        int code = 200;
-//        String msg = "success";
-//
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            user.setUserName(name);
-//            user.setPassword(password);
-//            userRepository.save(user);
-//        } else {
-//            code = 400;
-//            msg = "不存在该用户信息";
-//        }
-//
-//        return ResponseEntity.ok(Map.of("code", code, "msg", msg));
-//    }
+
 }
 

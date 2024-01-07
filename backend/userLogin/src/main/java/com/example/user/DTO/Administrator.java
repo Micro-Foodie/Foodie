@@ -1,9 +1,15 @@
 package com.example.user.DTO;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Data
 public class Administrator {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     public Integer ADMINID;
     public String ADMINNAME;
     public String PASSWORD;

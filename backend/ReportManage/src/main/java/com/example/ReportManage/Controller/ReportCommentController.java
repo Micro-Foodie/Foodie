@@ -22,9 +22,9 @@ public class ReportCommentController {
     }
 //
     @PutMapping("/dealMsgReport") // 处理举报
-    public ResponseEntity<?> dealMsgReport(@RequestParam int reportId, @RequestParam int adminId, @RequestParam int isTrue, @RequestParam String result) {
+    public ResponseEntity<?> dealMsgReport(@RequestParam int report_id, @RequestParam int adminId, @RequestParam int is_true, @RequestParam String result) {
         Map<String, Object> resulting = new HashMap<>();
-        resulting = ReportCommentRepository.findReportCommentByReportId(reportId,adminId,isTrue,result);
+        resulting = ReportCommentRepository.findReportCommentByReportId(report_id,adminId,is_true,result);
         return ResponseEntity.ok(resulting);
     }
 }

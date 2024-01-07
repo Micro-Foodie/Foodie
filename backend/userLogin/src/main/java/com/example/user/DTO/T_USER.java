@@ -1,11 +1,17 @@
 package com.example.user.DTO;
-
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Data
+
 public class T_USER {
-    public Integer USERID; 
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    public Integer USERID;
     public String USERNAME;
     public String PASSWORD;
     public String AVATAR;
