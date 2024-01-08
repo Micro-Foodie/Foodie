@@ -16,7 +16,7 @@ public class NoticeController : ControllerBase
     {
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
-    private string GetSummary(string content)
+    private string Summary(string content)
     {
         const int MaxSummaryLength = 5; // 设置文章概要的最大长度为5
         var summary = string.Empty;
@@ -46,7 +46,7 @@ public class NoticeController : ControllerBase
 
     //加载信息
     [HttpGet("loadNotice")]
-    public async Task<IActionResult> GetNoticeAsync(int user_id)
+    public async Task<IActionResult> NoticeAsync(int user_id)
     {
         var code = 200;
         var msg = "success";
@@ -82,7 +82,7 @@ public class NoticeController : ControllerBase
                 x.NoticeTime,
                 x.NoticeContent,
                 x.AdminName,
-                summary = GetSummary(x.NoticeContent) // 获取文章概要
+                summary = Summary(x.NoticeContent) // 获取文章概要
             });
         if(notices.Count >0){
             return Ok(new
@@ -105,8 +105,8 @@ public class NoticeController : ControllerBase
     }
 
     //发送信息
-    [HttpPost("postNotice")]
-    public async Task<IActionResult> PostNoticeAsync(int adminId, int userId, string noticeContent)
+    [HttpPost("publishNotice")]
+    public async Task<IActionResult> publishNoticeAsync(int adminId, int userId, string noticeContent)
     {
         var code = 200;
         var msg = "已成功发送";
@@ -143,8 +143,8 @@ public class NoticeController : ControllerBase
     }
 
     //删除某信息
-    [HttpDelete("deleteNotice")]
-    public async Task<IActionResult> DeleteNoticeAsync(int noticeId)
+    [HttpDelete("removeNotice")]
+    public async Task<IActionResult> removeNoticeAsync(int noticeId)
     {
         var code = 200;
         var msg = "已成功删除";

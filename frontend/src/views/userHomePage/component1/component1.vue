@@ -65,7 +65,7 @@
 <script setup="props">
 import { ref, reactive, onMounted, computed, nextTick, defineEmits } from 'vue';
 import { searchArticle, getArticleNumber } from "@/api/article.js"
-import { GetInfoByID, changePoint } from "@/api/info.js"
+import { InfoByID, changePoint } from "@/api/info.js"
 import { House, Star, User } from '@element-plus/icons-vue'
 import { ElPagination } from 'element-plus'
 import { useRouter } from 'vue-router'
@@ -219,7 +219,7 @@ const fetchuser = async () => {
         ID: store.state.Info.id,
         type: 1
     }
-    let result = await GetInfoByID(params);
+    let result = await InfoByID(params);
     if (!result) {
         return;
     }

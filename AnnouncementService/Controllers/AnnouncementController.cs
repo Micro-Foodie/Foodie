@@ -18,7 +18,7 @@ public class AnnouncementController : ControllerBase
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
 
-    private string GetSummary(string content)
+    private string Summary(string content)
     {
         const int MaxSummaryLength = 25; // 设置文章概要的最大长度为5
         var summary = string.Empty;
@@ -77,7 +77,7 @@ public class AnnouncementController : ControllerBase
             x.AdminName,
             x.IsTop,
             AnnouncementTime = x.AnnouncementTime != null ? x.AnnouncementTime.Value.ToString("yyyy-MM-dd") : null,
-            Summary = GetSummary(x.AnnouncementContent) // 获取文章概要
+            Summary = Summary(x.AnnouncementContent) // 获取文章概要
         });
         /* 在这分页的话
         int pageSize = 6; // 每页显示的公告数

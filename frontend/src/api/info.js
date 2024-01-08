@@ -5,10 +5,10 @@ import Message from "@/utils/Message.js"  // 在每个 api 文件里都要引入
 import router from "@/router/index.js"
 
 //通过Email获取用户/管理员信息
-export function GetInfoByEmail(params) {
+export function InfoByEmail(params) {
     return Request({
         method: 'GET',
-        url: 'info/getInfoByEmail',
+        url: 'info/InfoByEmail',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -22,7 +22,7 @@ export function GetInfoByEmail(params) {
 }
 
 //通过ID获取用户/管理员信息
-export function GetInfoByID(params) {
+export function InfoByID(params) {
     return Request({
         method: 'GET',
         url: 'info/InfoByID',

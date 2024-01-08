@@ -21,10 +21,10 @@ export function loadNotice(params) {
 }
 
 // 发送信息
-export function postNotice(params) {
+export function publishNotice(params) {
     return Request({
         method: 'Post',
-        url: 'Notice/postNotice',
+        url: 'Notice/publishNotice',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -39,10 +39,10 @@ export function postNotice(params) {
 }
 
 // 删除信息
-export function deleteNotice(params) {
+export function removeNotice(params) {
     return Request({
         method: 'Delete',
-        url: 'Notice/deleteNotice',
+        url: 'Notice/removeNotice',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {

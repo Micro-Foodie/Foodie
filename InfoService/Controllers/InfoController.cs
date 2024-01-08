@@ -18,8 +18,8 @@ public class InfoController : ControllerBase  // 命名规范，继承自 Contro
     }
 
     //通过Email获取用户/管理员资料信息
-    [HttpGet("getInfoByEmail")]
-    public IActionResult GetInfoByEmail(string email) // email 可以用来判断是管理员还是用户
+    [HttpGet("InfoByEmail")]
+    public IActionResult InfoByEmail(string email) // email 可以用来判断是管理员还是用户
     {
         // 在用户表中找到匹配的邮箱
         var user = _database.Users.Where(x => x.Email == email).ToList();
@@ -75,7 +75,7 @@ public class InfoController : ControllerBase  // 命名规范，继承自 Contro
 
     // 通过ID获取用户/管理员资料信息
     [HttpGet("InfoByID")]
-    public IActionResult GetInfoByID(int ID, int type) // 参数type:0为管理员，1为普通用户
+    public IActionResult InfoByID(int ID, int type) // 参数type:0为管理员，1为普通用户
     {
         if (type == 0)
         {
@@ -227,8 +227,8 @@ public class InfoController : ControllerBase  // 命名规范，继承自 Contro
     }
 
     // 返回用户头像
-    [HttpGet("getAvatar")]
-    public IActionResult GetAvatar(int userId)
+    [HttpGet("Avatar")]
+    public IActionResult Avatar(int userId)
     {
         var user = _database.Users.FirstOrDefault(x => x.UserId == userId);
         if (user == null)
