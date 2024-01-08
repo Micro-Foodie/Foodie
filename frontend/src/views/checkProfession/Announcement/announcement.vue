@@ -125,7 +125,7 @@ import { ref, reactive, onMounted, watch } from 'vue';
 import navTop from "@/components/navTop.vue"
 import announcementListItem from "@/components/announcementListItem.vue"
 import { loadAnnouncement, updateAnnouncement } from "@/api/announcement.js"
-import { deleteAnnouncement, topAnnouncement, postAnnouncement } from "@/api/announcement.js"
+import { removeAnnouncement, topAnnouncement, publishAnnouncement } from "@/api/announcement.js"
 //import { forum_searchArticle } from "@/api/article.js"
 import { GetInfoByID } from "@/api/user.js"
 import router from "@/router/index.js"
@@ -189,7 +189,7 @@ const submitAnnouncement = () => {
         announcementContent: form.value.announcementContent,
     }
     console.log(params);
-    postAnnouncement(params);
+    publishAnnouncement(params);
     GetList();
     location.reload();
 };
@@ -234,7 +234,7 @@ const deleteAnnouncements = async (AnnouncementId) => {
   const params = {
     announcementId: AnnouncementId
   };
-  result = await deleteAnnouncement(params);
+  result = await removeAnnouncement(params);
   if (result.code == 200) {
     window.alert('success');
   }

@@ -58,7 +58,7 @@
 import router from "@/router/index.js"
 import { ref, reactive, toRefs, onMounted } from 'vue';
 import { useRoute } from 'vue-router'
-import { postArticle, GetArticleDetailsAsync, editArticle } from "@/api/article.js"
+import { publishArticle, GetArticleDetailsAsync, editArticle } from "@/api/article.js"
 import { useStore } from 'vuex' // 引入store
 import navTopEdit from "@/components/navTopEdit.vue"
 onMounted(() => {

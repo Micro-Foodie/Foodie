@@ -46,7 +46,7 @@ public class AnnouncementController : ControllerBase
     }
     //加载公告
     [HttpGet("loadAnnouncement")]
-    public async Task<IActionResult> GetAnnouncementAsync()
+    public async Task<IActionResult> AnnouncementAsync()
     {
         var code = 200;
         var msg = "success";
@@ -104,8 +104,8 @@ public class AnnouncementController : ControllerBase
 
     }
     //删除某公告
-    [HttpDelete("deleteAnnouncement")]
-    public async Task<IActionResult> DeleteAnnouncementAsync(int announcementId)
+    [HttpDelete("removeAnnouncement")]
+    public async Task<IActionResult> RemoveAnnouncementAsync(int announcementId)
     {
         var code = 200;
         var msg = "success";
@@ -134,8 +134,8 @@ public class AnnouncementController : ControllerBase
         }
     }
     //发布公告
-    [HttpPost("postAnnouncement")]
-    public async Task<IActionResult> PostAnnouncementAsync(int adminId, string title, string announcementContent)
+    [HttpPost("publishAnnouncement")]
+    public async Task<IActionResult> PublishAnnouncementAsync(int adminId, string title, string announcementContent)
     {
         var code = 200;
         var msg = "success";

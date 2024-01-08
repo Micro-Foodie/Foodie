@@ -41,7 +41,7 @@ import { loadAnnouncement } from "@/api/announcement.js"
 //import { forum_searchArticle } from "@/api/article.js"
 import router from "@/router/index.js"
 import { useStore } from 'vuex' // 引入store
-import { postAnnouncement } from "@/api/announcement.js"
+import { publishAnnouncement } from "@/api/announcement.js"
 
 // 子组件接收父组件的传值 和 子路由接收父路由的传值不同
 // 前者：defineProps()
@@ -106,7 +106,7 @@ const submitAnnouncement = () => {
         announcementContent: form.value.announcementContent,
     }
     console.log(params);
-    postAnnouncement(params);
+    publishAnnouncement(params);
     fetchdata();//上传新公告后，更新一下前端显示公告
     location.reload();
 };

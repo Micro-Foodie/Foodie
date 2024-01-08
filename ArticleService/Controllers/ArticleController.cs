@@ -50,7 +50,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
 
 
     [HttpGet("recommendArticle")]
-    public async Task<IActionResult> GetArticleIndividually(int user_id)
+    public async Task<IActionResult> ArticleIndividually(int user_id)
     {
         if (_database.Likes.Any(x => x.UserId == user_id) == false)
         {
@@ -185,7 +185,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
     }
 
     [HttpGet("loadArticle")]
-    public async Task<IActionResult> GetArticleByTagAsync(int p_board_id)
+    public async Task<IActionResult> ArticleByTagAsync(int p_board_id)
     {//page_num为页码从1开始，page_size为每页的文章数
         var code = 400;
         var msg = "success";
@@ -323,7 +323,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
 
 
     [HttpGet("viewArticle")]
-    public async Task<IActionResult> GetArticleDetails(int article_id)
+    public async Task<IActionResult> ArticleDetails(int article_id)
     {
         var temp = await _database.Articles.ToListAsync();
         bool exist = false;
@@ -388,8 +388,8 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
     }
 
     //删除文章
-    [HttpPost("deleteArticle")]
-    public async Task<IActionResult> DeleteArticleAsync(int post_id)
+    [HttpPost("removeArticle")]
+    public async Task<IActionResult> RemoveArticleAsync(int post_id)
     {
         var code = 200;
         var msg = "success";
@@ -494,8 +494,8 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
     }
 
     //发布文章  
-    [HttpPost("postArticle")]
-    public async Task<IActionResult> postArticle([FromBody] ArticleRequestModel model)
+    [HttpPost("publishArticle")]
+    public async Task<IActionResult> publishArticle([FromBody] ArticleRequestModel model)
     {
         // user_id 要满足完整性约束
         var temp = await _database.Users.ToListAsync();
@@ -747,8 +747,8 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
         }
     }
 
-    [HttpGet("GetLikeNum")]//获取文章点赞量
-    public async Task<IActionResult> GetLikeNumber(int article_id)
+    [HttpGet("LikeNum")]//获取文章点赞量
+    public async Task<IActionResult> LikeNumber(int article_id)
     {
         if (await _database.Articles.AnyAsync(x => x.PostId == article_id) == false)
         {
@@ -767,8 +767,8 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
         });
     }
 
-    [HttpGet("GetFavouriteNum")]//获取文章点赞量
-    public async Task<IActionResult> GetFavouriteNumber(int article_id)
+    [HttpGet("FavouriteNum")]//获取文章点赞量
+    public async Task<IActionResult> FavouriteNumber(int article_id)
     {
         if (await _database.Articles.AnyAsync(x => x.PostId == article_id) == false)
         {
@@ -786,6 +786,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
             likeNum = a.FavouriteNum
         });
     }
+    
     //置顶与取消置顶
     [HttpPost("topArticle")]
     public async Task<IActionResult> TopArticle(int articleId, int istop)
