@@ -110,7 +110,7 @@ import navTop from "@/components/navTop.vue"
 import commentList from "./commentList.vue"
 
 import { like } from '@/api/like';
-import { GetInfoByID } from '@/api/info';
+import { InfoByID } from '@/api/info';
 import { favourite } from '@/api/favourite';
 import { ReportArticle } from '@/api/report'; // 引入举报api
 
@@ -155,7 +155,7 @@ const getAuthor = async (userId) => {
         ID: userId,
         type: 1
     }
-    let result = await GetInfoByID(params);
+    let result = await InfoByID(params);
     if (!result) {
         return;
     }

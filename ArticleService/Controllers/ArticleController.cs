@@ -20,7 +20,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
 
-    private string GetSummary(string content)
+    private string Summary(string content)
     {
         content = Regex.Replace(content, "<[^>]+>", "");
         const int MaxSummaryLength = 30; // 设置文章概要的最大长度为5
@@ -249,7 +249,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
                 ReleaseTime = x.ReleaseTime != null ? x.ReleaseTime.Value.ToString("yyyy-MM-dd") : null,
                 x.Picture,
                 x.IsTop,
-                Summary = GetSummary(x.Content) // 获取文章概要
+                Summary = Summary(x.Content) // 获取文章概要
             });
             if (data.Count() == 0)
             {
@@ -306,7 +306,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
                 ReleaseTime = x.ReleaseTime != null ? x.ReleaseTime.Value.ToString("yyyy-MM-dd") : null,
                 x.Picture,
                 x.IsTop,
-                Summary = GetSummary(x.Content) // 获取文章概要
+                Summary = Summary(x.Content) // 获取文章概要
             });
             if (data.Count() == 0)
             {
@@ -633,7 +633,7 @@ public class ArticleController : ControllerBase  // 命名规范，继承自 Con
             x.AuthorName,
             x.IsBanned,
             ReleaseTime = x.ReleaseTime != null ? x.ReleaseTime.Value.ToString("yyyy-MM-dd") : null,
-            Summary = GetSummary(x.Content) // 获取文章概要
+            Summary = Summary(x.Content) // 获取文章概要
         });
 
         if (articles.Count > 0)

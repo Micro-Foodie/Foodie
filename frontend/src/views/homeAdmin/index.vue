@@ -106,7 +106,7 @@ import { ref, onMounted, watch } from 'vue';
 import { reactive } from 'vue';
 import navTopAdmin from "@/components/navTopAdmin.vue"
 import { useStore } from 'vuex'//引入store
-import { postNotice } from "@/api/notice.js"
+import { publishNotice } from "@/api/notice.js"
 import { useRouter } from 'vue-router'
 
 const router=useRouter()
@@ -156,7 +156,7 @@ const submitNotice = () => {
         noticeContent: form.value.CONTENT,
     }
     //console.log(params);
-    postNotice(params);
+    publishNotice(params);
     dialogVisible.value = false;
     //console.log("success");
     location.reload();
