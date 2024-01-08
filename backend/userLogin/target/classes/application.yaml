@@ -7,6 +7,12 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+      config:
+      server-addr: localhost:8848
+      file-extension: yaml
+      shared-configs:
+        - data-id: user_log
+      group: DEFAULT_GROUP
     gateway:
       routes:
         # id 路由唯一表示
