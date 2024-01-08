@@ -35,7 +35,7 @@ import { ref, onMounted } from "vue"
 import { useStore } from 'vuex' // 引入store
 // loadComment 加载评论
 // postComment 上传评论 user_id + article_id + content
-import { loadComment, postComment } from "@/api/comment.js"
+import { loadComment, publishComment } from "@/api/comment.js"
 import commentListItem from "./commentListItem.vue";
 import Message from "@/utils/Message.js"
 
@@ -81,7 +81,7 @@ const sendComment = async () => {
     };
 
     // 发送评论
-    await postComment(params);
+    await publishComment(params);
 
     // 清空评论内容
     commentContent.value = "";

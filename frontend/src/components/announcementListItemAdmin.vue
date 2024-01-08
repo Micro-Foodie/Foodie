@@ -88,7 +88,7 @@
 
 <script setup>
 
-import { deleteAnnouncement } from "@/api/announcement.js"
+import { removeAnnouncement } from "@/api/announcement.js"
 import { updateAnnouncement } from "@/api/announcement.js"
 import { topAnnouncement } from "@/api/announcement.js"
 import { ref, reactive, toRefs, onMounted } from 'vue';
@@ -149,7 +149,7 @@ const deleteAnnouncements = async (AnnouncementId) => {
   const params = {
     announcementId: props.data.announcementID
   };
-  result = await deleteAnnouncement(params);
+  result = await removeAnnouncement(params);
   if (result.code == 200) {
     window.alert('success');
     emit('child-click', 1)

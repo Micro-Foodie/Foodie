@@ -2,10 +2,10 @@ import Request from "@/utils/Request/comment.js";  // 在每个 api 文件里都
 import Message from "@/utils/Message.js"  // 在每个 api 文件里都要引入这两个文件
 
 // 上传评论
-export function postComment(params) {
+export function publishComment(params) {
   return Request({
     method: "POST",
-    url: "Comment/postComment",
+    url: "Comment/publishComment",
     params: params
   }).then(function (response) {
     if (response.data.code === 200) {
@@ -20,10 +20,10 @@ export function postComment(params) {
 }
 
 // 删除指定评论
-export function deleteComment(params) {
+export function removeComment(params) {
   return Request({
     method: "POST",
-    url: "Comment/deleteComment",
+    url: "Comment/removeComment",
     params: params
   }).then(function (response) {
     if (response.data.code === 200) {

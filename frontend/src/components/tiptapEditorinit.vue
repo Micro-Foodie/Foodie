@@ -111,7 +111,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { Editor, EditorContent } from '@tiptap/vue-3';
 import Underline from '@tiptap/extension-underline';
 import Icon from '@/components/Icon.vue';
-import { postArticle, editArticle } from "@/api/article.js"
+import { publishArticle, editArticle } from "@/api/article.js"
 import { useStore } from 'vuex' // 引入store
 import Image from '@tiptap/extension-image'
 import uploadFileToCOS from "@/utils/TXcos.js"

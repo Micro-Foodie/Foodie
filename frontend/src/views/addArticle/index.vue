@@ -72,7 +72,7 @@
 import router from "@/router/index.js"
 import { ref, reactive, toRefs, onMounted } from 'vue';
 import { useRouter } from 'vue-router'
-import { postArticle } from "@/api/article.js"
+import { publishArticle } from "@/api/article.js"
 import { useStore } from 'vuex' // 引入store
 
 const store = useStore(); // 使用store必须加上
@@ -94,7 +94,7 @@ const postArticles = async(user_id,tag,content,picture,Sharelink) => {
         Sharelink:'1'
     };
     console.log(params);
-    result = await postArticle(params);
+    result = await publishArticle(params);
     if(result.code==200){
       window.alert('成功了哦');
       router.push({ path: 'userHomePage' });

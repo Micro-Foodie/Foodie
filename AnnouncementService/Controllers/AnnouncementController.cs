@@ -18,7 +18,7 @@ public class AnnouncementController : ControllerBase
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
 
-    private string GetSummary(string content)
+    private string Summary(string content)
     {
         const int MaxSummaryLength = 25; // 设置文章概要的最大长度为5
         var summary = string.Empty;
@@ -46,7 +46,7 @@ public class AnnouncementController : ControllerBase
     }
     //加载公告
     [HttpGet("loadAnnouncement")]
-    public async Task<IActionResult> GetAnnouncementAsync()
+    public async Task<IActionResult> AnnouncementAsync()
     {
         var code = 200;
         var msg = "success";
@@ -77,7 +77,7 @@ public class AnnouncementController : ControllerBase
             x.AdminName,
             x.IsTop,
             AnnouncementTime = x.AnnouncementTime != null ? x.AnnouncementTime.Value.ToString("yyyy-MM-dd") : null,
-            Summary = GetSummary(x.AnnouncementContent) // 获取文章概要
+            Summary = Summary(x.AnnouncementContent) // 获取文章概要
         });
         /* 在这分页的话
         int pageSize = 6; // 每页显示的公告数
@@ -104,8 +104,8 @@ public class AnnouncementController : ControllerBase
 
     }
     //删除某公告
-    [HttpDelete("deleteAnnouncement")]
-    public async Task<IActionResult> DeleteAnnouncementAsync(int announcementId)
+    [HttpDelete("removeAnnouncement")]
+    public async Task<IActionResult> RemoveAnnouncementAsync(int announcementId)
     {
         var code = 200;
         var msg = "success";
@@ -134,8 +134,8 @@ public class AnnouncementController : ControllerBase
         }
     }
     //发布公告
-    [HttpPost("postAnnouncement")]
-    public async Task<IActionResult> PostAnnouncementAsync(int adminId, string title, string announcementContent)
+    [HttpPost("publishAnnouncement")]
+    public async Task<IActionResult> PublishAnnouncementAsync(int adminId, string title, string announcementContent)
     {
         var code = 200;
         var msg = "success";

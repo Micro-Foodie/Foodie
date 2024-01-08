@@ -111,7 +111,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { Editor, EditorContent } from '@tiptap/vue-3';
 import Underline from '@tiptap/extension-underline';
 import Icon from '@/components/Icon.vue';
-import { postArticle } from "@/api/article.js"
+import { publishArticle } from "@/api/article.js"
 import { useStore } from 'vuex' // 引入store
 import Image from '@tiptap/extension-image'
 import uploadFileToCOS from "@/utils/TXcos.js"
@@ -211,7 +211,7 @@ export default {
                 Sharelink: '1'
             };
 
-            postArticle(params);
+            publishArticle(params);
 
             // // 清空标题和内容
             // this.articleTitle = '';

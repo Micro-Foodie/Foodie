@@ -37,7 +37,7 @@
       <div class="bottom">
         <time class="time">{{ currentDate }}</time>
         <el-button type="primary" round class editButton size="small" @click="showTipTapEditor = true">编辑</el-button>
-        <el-button type="danger" round class deleteButton size="small" @click="deleteArticles">删除</el-button>
+        <el-button type="danger" round class deleteButton size="small" @click="removeArticles">删除</el-button>
       </div>
       <!-- ********************************* -->
       <el-dialog v-model="showTipTapEditor" :title=data.title width="80%" height="80%" align-center>
@@ -71,7 +71,7 @@
 import { defaultInitialZIndex } from 'element-plus';
 import { ref, reactive, toRefs, onMounted, defineEmits } from 'vue';
 import { useRouter } from 'vue-router'
-import { deleteArticle } from "@/api/article.js"
+import { removeArticle } from "@/api/article.js"
 const currentDate = ref(new Date())//
 const router = useRouter();// START 发布文章
 const showTipTapEditor = ref(false)
@@ -95,12 +95,12 @@ const props = defineProps({
     type:Int16Array,
   }
 });
-const deleteArticles = async (postId) => {
+const removeArticles = async (postId) => {
   let result;
   const params = {
     post_id: props.data.postId
   };
-  result = await deleteArticle(params);
+  result = await removeArticle(params);
   if (result.code == 200) {
     window.alert('success');
     emit('child-click', 1)

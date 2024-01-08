@@ -17,8 +17,8 @@ public class CommentController : ControllerBase
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
 
-    [HttpPost("postComment")]
-    public async Task<IActionResult> PostComment(int user_id, int article_id, string content)
+    [HttpPost("publishComment")]
+    public async Task<IActionResult> PublishComment(int user_id, int article_id, string content)
     {
         if (_database.Users.Any(x => x.UserId == user_id) == false || _database.Articles.Any(x => x.PostId == article_id) == false)
         {
@@ -48,8 +48,8 @@ public class CommentController : ControllerBase
         });
     }
 
-    [HttpPost("deleteComment")]
-    public async Task<IActionResult> DeleteComment(int msg_id)
+    [HttpPost("removeComment")]
+    public async Task<IActionResult> RemoveComment(int msg_id)
     {
         if (_database.Comments.Any(x => x.MsgId == msg_id) == false)
         {

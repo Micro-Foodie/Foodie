@@ -16,7 +16,7 @@ public class NoticeController : ControllerBase
     {
         _database = appDbContext;  // 依赖注入，在整个类中使用它来进行数据库操作
     }
-    private string GetSummary(string content)
+    private string Summary(string content)
     {
         const int MaxSummaryLength = 5; // 设置文章概要的最大长度为5
         var summary = string.Empty;

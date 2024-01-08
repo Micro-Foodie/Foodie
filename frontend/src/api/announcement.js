@@ -20,10 +20,10 @@ export function loadAnnouncement() {
     })
 }
 // 删除公告
-export function deleteAnnouncement(params) {
+export function removeAnnouncement(params) {
     return Request({
         method: 'Delete',
-        url: 'Announcement/deleteAnnouncement',
+        url: 'Announcement/removeAnnouncement',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -37,10 +37,10 @@ export function deleteAnnouncement(params) {
     })
 }
 // 发布公告
-export function postAnnouncement(params) {
+export function publishAnnouncement(params) {
     return Request({
         method: 'Post',
-        url: 'Announcement/postAnnouncement',
+        url: 'Announcement/publishAnnouncement',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {

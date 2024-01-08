@@ -75,10 +75,10 @@ export function searchArticles(params) {
 
 
 //删除文章
-export function deleteArticle(params) {
+export function removeArticle(params) {
     return Request({
         method: 'POST',
-        url: 'Article/deleteArticle',
+        url: 'Article/removeArticle',
         params: params
     }).then(function (response) {
         if (response.data.code === 200) {
@@ -168,7 +168,7 @@ export function viewArticle(params) {
 }
 
 //发布文章
-export function postArticle(params) {
+export function publishArticle(params) {
     const requestBody = {
         user_id: params.user_id,
         title: params.title,
@@ -180,7 +180,7 @@ export function postArticle(params) {
 
     return Request({
         method: 'POST',
-        url: 'Article/postArticle',
+        url: 'Article/publishArticle',
         data: requestBody, // 使用 data 属性传递请求正文体
     }).then(function (response) {
         if (response.data.code === 200) {
